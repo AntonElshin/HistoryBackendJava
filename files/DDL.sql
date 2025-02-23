@@ -37,7 +37,8 @@ create table race
     race_name varchar(200) not null,
     race_city varchar(100) not null,
     race_address varchar(200) not null,
-    description text
+    description text,
+    constraint race_id_pk primary key (id)
 );
 
 comment on table race is 'Забеги';
@@ -54,7 +55,8 @@ create table distance
     id bigint not null,
     distance_name varchar(4) not null,
     entrance_fee numeric,
-    racer_limit integer
+    racer_limit integer,
+    constraint distance_id_pk primary key (id)
 );
 
 comment on table distance is 'Дистанции забега';
@@ -74,7 +76,8 @@ create table registration
     gender varchar(6) not null,
     email varchar(100) not null,
     mobile_phone varchar(10),
-    is_paid boolean not null
+    is_paid boolean not null,
+    constraint registration_pk primary key (id)
 );
 
 comment on table registration is 'Регистрация на дистанцию забега';
