@@ -91,8 +91,80 @@ comment on column registration.email is 'Адрес электронной по�
 comment on column registration.mobile_phone is 'Номер мобильного телефона';
 comment on column registration.is_paid is 'Признак оплаты';
 
+-- create stored procedure add_registration
+
+create or replace procedure add_registration(
+    _distance_id bigint,
+    _last_name varchar(100),
+    _first_name varchar(100),
+    _middle_name varchar(100),
+    _birth_date timestamp without time zone,
+    _gender varchar(6),
+    _email varchar(100),
+    _mobile_phone varchar(10),
+    _is_paid boolean,
+    inout _is_added boolean default false
+)
+language plpgsql
+AS $$
+declare
+    _racer_limit int default null;
+begin
+    select racer_limit into _racer_limit from distance where id = _distance_id;
+
+    if _racer_limit is null or (_racer_limit is not null and _racer_limit > 0) then
+        insert into registration (distance_id, last_name, first_name, middle_name, birth_date, gender, email, mobile_phone, is_paid) values
+            (_distance_id, _last_name, _first_name, _middle_name, _birth_date, _gender, _email, _mobile_phone, _is_paid);
+
+        update distance set racer_limit = racer_limit - 1 where id = _distance_id;
+
+        _is_added = true;
+    end if;
+
+    commit;
+end;
+$$;
+
+-- create stored procedure delete_registration
+
+create or replace procedure delete_registration(
+    _registration_id bigint,
+    inout _is_deleted boolean default false
+)
+language plpgsql
+AS $$
+declare
+    _distance_id bigint;
+    _racer_limit int default null;
+    _is_paid boolean default false;
+begin
+    select is_paid into _is_paid from registration where id = _registration_id;
+
+    if _is_paid is true then
+        raise exception 'Impossible to delete registration until entrance fee will be returned';
+    end if;
+
+    select id, racer_limit into _distance_id, _racer_limit from distance where id = _distance_id;
+
+    if _racer_limit is not null then
+        update distance set racer_limit = racer_limit + 1 where id = _distance_id;
+    end if;
+
+    delete from registration where id = _registration_id;
+
+    _is_deleted = true;
+
+    commit;
+end;
+$$;
+
 -- drop tables
 
 drop table registration;
 drop table distance;
 drop table race;
+
+-- drop procedures
+
+drop procedure add_registration;
+drop procedure delete_registration;

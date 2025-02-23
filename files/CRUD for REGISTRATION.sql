@@ -2,22 +2,7 @@
 
 -- insert (CREATE)
 
-select racer_limit from distance where id = 5;
-
--- если racer_limit is null ИЛИ racer_limit > 0, тогда
-
-insert into registration values
-    (9, 5, 'Архипова', 'Ольга', 'Михайловна', to_date('20050701', 'yyyymmdd'), 'FEMALE', 'arkhipova_om@mail.ru', '9999999993', false);
-
-    -- если racer_limit > 0
-
-    update distance
-    set
-      racer_limit = racer_limit - 1
-    where
-      id = 5;
-
--- иначе вернуть ошибку или ничего не делать
+call add_registration(5, 'Архипова', 'Ольга', 'Михайловна', to_date('20050701', 'yyyymmdd'), 'FEMALE', 'arkhipova_om@mail.ru', '9999999993', false);
 
 -- select all (READ)
 
@@ -201,14 +186,4 @@ where
 
 -- delete (DELETE)
 
-delete from registration where id = 9;
-
-select racer_limit from distance where id = 5;
-
-    -- если racer_limit не null
-
-    update distance
-    set
-      racer_limit = racer_limit + 1
-    where
-      id = 5;
+call delete_registration(9);

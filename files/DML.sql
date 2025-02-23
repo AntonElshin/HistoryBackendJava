@@ -39,20 +39,20 @@ insert into distance (race_id, distance_name, entrance_fee, racer_limit) values
 
 -- inserts into registration
 
-insert into registration (distance_id, last_name, first_name, middle_name, birth_date, gender, email, mobile_phone, is_paid) values
-    (3, 'Петров', 'Василий', 'Александрович', to_date('19850417', 'yyyymmdd'), 'MALE', 'petrov_va@mail.ru', '9999999999', false),
-    (5, 'Петров', 'Василий', 'Александрович', to_date('19850417', 'yyyymmdd'), 'MALE', 'petrov_va@mail.ru', '9999999999', false),
-    (2, 'Сидоров', 'Алексей', 'Михайлович', to_date('19950801', 'yyyymmdd'), 'MALE', 'sidorov_am@mail.ru', '9999999998', false),
-    (1, 'Волков', 'Сергей', 'Петрович', to_date('19950801', 'yyyymmdd'), 'MALE', 'volkov_sp@mail.ru', '9999999997', false),
-    (5, 'Борисова', 'Екатерина', 'Андреевна', to_date('19970519', 'yyyymmdd'), 'FEMALE', 'borisova_ea@mail.ru', '9999999997', false),
-    (6, 'Андреева', 'Дарья', 'Сергеевна', to_date('19911112', 'yyyymmdd'), 'FEMALE', 'andreeva_ds@mail.ru', '9999999996', false),
-    (5, 'Смирнова', 'Татьяна', 'Васильевна', to_date('20010130', 'yyyymmdd'), 'FEMALE', 'smirnova_tv@mail.ru', '9999999995', false),
-    (5, 'Кузнецова', 'Надежда', 'Игоревна', to_date('20020217', 'yyyymmdd'), 'FEMALE', 'kuznetsova_ni@mail.ru', '9999999994', false),
-    (5, 'Архипова', 'Ольга', 'Михайловна', to_date('20050701', 'yyyymmdd'), 'FEMALE', 'arkhipova_om@mail.ru', '9999999993', false);
+call add_registration(3, 'Петров', 'Василий', 'Александрович', to_date('19850417', 'yyyymmdd'), 'MALE', 'petrov_va@mail.ru', '9999999999', false);
+call add_registration(5, 'Петров', 'Василий', 'Александрович', to_date('19850417', 'yyyymmdd'), 'MALE', 'petrov_va@mail.ru', '9999999999', false);
+call add_registration(2, 'Сидоров', 'Алексей', 'Михайлович', to_date('19950801', 'yyyymmdd'), 'MALE', 'sidorov_am@mail.ru', '9999999998', false);
+call add_registration(1, 'Волков', 'Сергей', 'Петрович', to_date('19950801', 'yyyymmdd'), 'MALE', 'volkov_sp@mail.ru', '9999999997', false);
+call add_registration(5, 'Борисова', 'Екатерина', 'Андреевна', to_date('19970519', 'yyyymmdd'), 'FEMALE', 'borisova_ea@mail.ru', '9999999997', false);
+call add_registration(6, 'Андреева', 'Дарья', 'Сергеевна', to_date('19911112', 'yyyymmdd'), 'FEMALE', 'andreeva_ds@mail.ru', '9999999996', false);
+call add_registration(5, 'Смирнова', 'Татьяна', 'Васильевна', to_date('20010130', 'yyyymmdd'), 'FEMALE', 'smirnova_tv@mail.ru', '9999999995', false);
+call add_registration(5, 'Кузнецова', 'Надежда', 'Игоревна', to_date('20020217', 'yyyymmdd'), 'FEMALE', 'kuznetsova_ni@mail.ru', '9999999994', false);
+call add_registration(5, 'Архипова', 'Ольга', 'Михайловна', to_date('20050701', 'yyyymmdd'), 'FEMALE', 'arkhipova_om@mail.ru', '9999999993', false);
+
+call add_registration(5, 'Комарова', 'Юлия', 'Алексеевна', to_date('20020916', 'yyyymmdd'), 'FEMALE', 'arkhipova_om@mail.ru', '9999999993', false);
 
 -- deletes
 
-delete from race;
-delete from distance;
 delete from registration;
-
+delete from distance;
+delete from race;
