@@ -28,6 +28,19 @@ create database history_backend_java
 
 -- START DEVELOPMENT
 
+-- create table auto_pk_support
+
+create table auto_pk_support
+(
+    table_name varchar(30) not null,
+    next_id bigint not null,
+    constraint auto_pk_support_pk primary key (table_name)
+);
+
+comment on table auto_pk_support is 'Общая таблица идентификаторов';
+comment on column auto_pk_support.table_name is 'Название таблицы';
+comment on column auto_pk_support.next_id is 'Значение следующего идентификатора';
+
 -- create table race
 
 create table race
@@ -93,6 +106,7 @@ comment on column registration.is_paid is 'Признак оплаты';
 
 -- drop tables
 
+drop table auto_pk_support;
 drop table registration;
 drop table distance;
 drop table race;
