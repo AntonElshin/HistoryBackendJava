@@ -55,7 +55,8 @@ create table distance
     race_id bigint not null references race (id),
     distance_name varchar(4) not null,
     entrance_fee numeric,
-    racer_limit integer
+    racer_limit integer,
+    constraint distance_race_id_distance_name_key unique (race_id, distance_name)
 );
 
 comment on table distance is 'Дистанции забега';
@@ -89,10 +90,6 @@ comment on column registration.birth_date is 'Дата рождения';
 comment on column registration.email is 'Адрес электронной почты';
 comment on column registration.mobile_phone is 'Номер мобильного телефона';
 comment on column registration.is_paid is 'Признак оплаты';
-
--- change table distance after creation
-
-alter table distance add constraint distance_race_id_distance_name_key unique (race_id, distance_name);
 
 -- drop tables
 
