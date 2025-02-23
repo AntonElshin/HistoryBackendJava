@@ -28,24 +28,18 @@ create database history_backend_java
 
 -- START DEVELOPMENT
 
--- create table auto_pk_support
+-- create sequence race_seq
 
-create table auto_pk_support
-(
-    table_name varchar(30) not null,
-    next_id bigint not null,
-    constraint auto_pk_support_pk primary key (table_name)
-);
-
-comment on table auto_pk_support is 'Общая таблица идентификаторов';
-comment on column auto_pk_support.table_name is 'Название таблицы';
-comment on column auto_pk_support.next_id is 'Значение следующего идентификатора';
+create sequence race_seq
+    increment 1
+    start 1
+    minvalue 1;
 
 -- create table race
 
 create table race
 (
-    id bigint not null unique,
+    id bigint not null unique default nextval('race_seq'),
     race_date timestamp without time zone not null,
     race_name varchar(200) not null,
     race_city varchar(100) not null,
@@ -60,11 +54,18 @@ comment on column race.race_city is 'Город забега';
 comment on column race.race_address is 'Адрес забега';
 comment on column race.description is 'Описание забега';
 
+-- create sequence distance_seq
+
+create sequence distance_seq
+    increment 1
+    start 1
+    minvalue 1;
+
 -- create table distance
 
 create table distance
 (
-    id bigint not null unique,
+    id bigint not null unique default nextval('distance_seq'),
     race_id bigint not null references race (id),
     distance_name varchar(4) not null,
     entrance_fee numeric,
@@ -78,11 +79,18 @@ comment on column distance.distance_name is 'Название дистанции
 comment on column distance.distance_name is 'Сумма вступительного взноса';
 comment on column distance.racer_limit is 'Лимит участников';
 
+-- create sequence distance_seq
+
+create sequence registration_seq
+    increment 1
+    start 1
+    minvalue 1;
+
 -- create table registration
 
 create table registration
 (
-    id bigint not null unique,
+    id bigint not null unique default nextval('registration_seq'),
     distance_id bigint not null references distance (id),
     last_name varchar(100) not null,
     first_name varchar(100) not null,
@@ -106,7 +114,12 @@ comment on column registration.is_paid is 'Признак оплаты';
 
 -- drop tables
 
-drop table auto_pk_support;
 drop table registration;
 drop table distance;
 drop table race;
+
+-- drop sequences
+
+drop sequence registration_seq;
+drop sequence distance_seq;
+drop sequence race_seq;
