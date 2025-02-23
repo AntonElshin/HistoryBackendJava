@@ -52,12 +52,15 @@ comment on column race.description is 'Описание забега';
 create table distance
 (
     id bigint not null unique,
+    race_id bigint not null,
     distance_name varchar(4) not null,
     entrance_fee numeric,
-    racer_limit integer
+    racer_limit integer,
+    constraint distance_race_id_fk foreign key (race_id) references race (id)
 );
 
 comment on table distance is 'Дистанции забега';
+comment on column distance.race_id is 'идентификатор забега';
 comment on column distance.distance_name is 'Название дистанции';
 comment on column distance.distance_name is 'Сумма вступительного взноса';
 comment on column distance.racer_limit is 'Лимит участников';
@@ -67,6 +70,7 @@ comment on column distance.racer_limit is 'Лимит участников';
 create table registration
 (
     id bigint not null unique,
+    distance_id bigint not null,
     last_name varchar(100) not null,
     first_name varchar(100) not null,
     middle_name varchar(100) not null,
@@ -74,10 +78,12 @@ create table registration
     gender varchar(6) not null,
     email varchar(100) not null,
     mobile_phone varchar(10),
-    is_paid boolean not null
+    is_paid boolean not null,
+    constraint registration_distance_id_fk foreign key (distance_id) references distance (id)
 );
 
 comment on table registration is 'Регистрация на дистанцию забега';
+comment on column registration.distance_id is 'Идентификатор дистанции забега';
 comment on column registration.last_name is 'Фамилия';
 comment on column registration.first_name is 'Имя';
 comment on column registration.middle_name is 'Отчество';
@@ -88,6 +94,6 @@ comment on column registration.is_paid is 'Признак оплаты';
 
 -- drop tables
 
-drop table race;
-drop table distance;
 drop table registration;
+drop table distance;
+drop table race;
