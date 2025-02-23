@@ -30,7 +30,7 @@ create database history_backend_java
 
 -- create table race
 
-create table race
+create table if not exists race
 (
     id bigserial not null unique,
     race_date timestamp without time zone not null,
@@ -49,7 +49,7 @@ comment on column race.description is 'Описание забега';
 
 -- create table distance
 
-create table distance
+create table if not exists distance
 (
     id bigserial not null unique,
     race_id bigint not null references race (id),
@@ -67,7 +67,7 @@ comment on column distance.racer_limit is 'Лимит участников';
 
 -- create table registration
 
-create table registration
+create table if not exists registration
 (
     id bigserial not null unique,
     distance_id bigint not null references distance (id),
