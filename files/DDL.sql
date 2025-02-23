@@ -90,6 +90,10 @@ comment on column registration.email is 'Адрес электронной по�
 comment on column registration.mobile_phone is 'Номер мобильного телефона';
 comment on column registration.is_paid is 'Признак оплаты';
 
+-- change table distance after creation
+
+alter table distance add constraint distance_race_id_distance_name_key unique (race_id, distance_name);
+
 -- drop tables
 
 drop table registration;
