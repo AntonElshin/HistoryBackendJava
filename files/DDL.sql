@@ -32,12 +32,12 @@ create database history_backend_java
 
 create table if not exists race
 (
-    id bigint,
-    is_active boolean,
-    race_date timestamp without time zone,
-    race_name varchar(100),
-    race_city varchar(100),
-    race_address varchar(200),
+    id bigint not null,
+    is_active boolean not null,
+    race_date timestamp without time zone not null,
+    race_name varchar(100) not null,
+    race_city varchar(100) not null,
+    race_address varchar(200) not null,
     description text
 );
 
@@ -50,21 +50,12 @@ comment on column race.race_city is 'Город забега';
 comment on column race.race_address is 'Адрес забега';
 comment on column race.description is 'Описание забега';
 
--- alter table race
-
-alter table race alter column id set not null;
-alter table race alter column is_active set not null;
-alter table race alter column race_date set not null;
-alter table race alter column race_name set not null;
-alter table race alter column race_city set not null;
-alter table race alter column race_address set not null;
-
 -- create table distance
 
 create table if not exists distance
 (
-    id bigint,
-    distance_name varchar(4),
+    id bigint not null,
+    distance_name varchar(4) not null,
     entrance_fee numeric,
     entrance_currency varchar(3),
     racer_limit integer
@@ -77,25 +68,20 @@ comment on column distance.entrance_fee is 'Сумма вступительно�
 comment on column distance.entrance_currency is 'Валюта вступительного взноса';
 comment on column distance.racer_limit is 'Лимит участников';
 
--- alter table distance
-
-alter table distance alter column id set not null;
-alter table distance alter column distance_name set not null;
-
 -- create table registration
 
 create table if not exists registration
 (
-    id bigint,
-    creation_date timestamp without time zone,
-    status varchar(20),
-    last_name varchar(100),
-    first_name varchar(100),
-    middle_name varchar(100),
-    birth_date timestamp without time zone,
-    gender varchar(6),
-    email varchar(100),
-    mobile_phone varchar(10),
+    id bigint not null,
+    creation_date timestamp without time zone not null,
+    status varchar(20) not null,
+    last_name varchar(100) not null,
+    first_name varchar(100) not null,
+    middle_name varchar(100) not null,
+    birth_date timestamp without time zone not null,
+    gender varchar(6) not null,
+    email varchar(100) not null,
+    mobile_phone varchar(10) not null,
     delete_reason varchar(20)
 );
 
@@ -111,19 +97,6 @@ comment on column registration.gender is 'Пол участника';
 comment on column registration.email is 'Адрес электронной почты участника';
 comment on column registration.mobile_phone is 'Номер мобильного телефона участника';
 comment on column registration.delete_reason is 'Причина удаления регистрации';
-
--- alter table registration
-
-alter table registration alter column id set not null;
-alter table registration alter column creation_date set not null;
-alter table registration alter column status set not null;
-alter table registration alter column last_name set not null;
-alter table registration alter column first_name set not null;
-alter table registration alter column middle_name set not null;
-alter table registration alter column birth_date set not null;
-alter table registration alter column gender set not null;
-alter table registration alter column email set not null;
-alter table registration alter column mobile_phone set not null;
 
 -- drop tables
 
