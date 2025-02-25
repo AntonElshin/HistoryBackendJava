@@ -24,6 +24,59 @@ from
 where
     is_active = true;
 
+-- select pagination with offset and limit (READ)
+
+-- определяем количество страниц
+
+select ceil( count(*) / 1 ) from race; -- limit = 1
+
+-- передаём в запрос смещение относительно начала или 0 для первой
+
+select
+    *
+from
+    race
+where
+    is_active = true
+offset 0
+limit 1;
+
+select
+    *
+from
+    race
+where
+    is_active = true
+offset 1
+limit 1;
+
+-- select pagination with where and limit (READ)
+
+-- определяем количество страниц
+
+select ceil( count(*) / 1 ) from race where is_active = true; -- limit = 1
+
+-- передаём в запрос максимальный идентификатор прошлой страницы или 0 для первой
+
+select
+    *
+from
+    race
+where
+    is_active = true
+    and id >= 0
+limit 1;
+
+select
+    *
+from
+    race
+where
+    is_active = true
+    and id >= 1
+limit 1;
+
+
 -- select by id (READ)
 
 select
