@@ -15,6 +15,67 @@
 
 */
 
+/*
+
+  Динамическая часть запросов:
+
+  ------------------------------------------------------------
+
+  Общая вид запроса select
+
+    select
+        field1,
+        field2,
+        field3,
+        field4
+    from
+        table
+    where                        => dynamic
+        condition 1              => dynamic
+        and condition2           => dynamic
+        ...
+
+  Если нет условия, тогда нет where
+  Если есть одно условие, то есть where
+  Если несколько условий, то есть where, первое условие, остальные условия через and или or
+
+  ------------------------------------------------------------
+
+  Общий вид запроса update
+
+    update table
+    set
+        field1 = value1,         => dynamic
+        field2 = value2,         => dynamic
+        field3 = value3,         => dynamic
+        field4 = value4          => dynamic
+        ...
+    where                        => dynamic
+        condition 1              => dynamic
+        and condition2           => dynamic
+        ...
+
+  Увеличивается количество полей и значений в set
+  Если нет условия, тогда нет where
+  Если есть одно условие, то есть where
+  Если несколько условий, то есть where, первое условие, остальные условия через and или or
+
+  ------------------------------------------------------------
+
+  Общий вид запроса delete
+
+    delete from table
+    where                        => dynamic
+        condition 1              => dynamic
+        and condition2           => dynamic
+        ...
+
+  Если нет условия, тогда нет where
+  Если есть одно условие, то есть where
+  Если несколько условий, то есть where, первое условие, остальные условия через and или or
+
+*/
+
 -- selects
 
 select * from race;
