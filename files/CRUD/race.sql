@@ -18,7 +18,13 @@ insert into race (is_active, race_date, race_name, race_city, race_address, desc
 -- select all (READ)
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -33,7 +39,13 @@ select ceil( count(*) / 1 ) from race where is_active = true; -- limit = 1
 -- передаём в запрос максимальный идентификатор прошлой страницы или 0 для первой
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -42,7 +54,13 @@ where
 limit 1;
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -54,7 +72,13 @@ limit 1;
 -- select by id (READ)
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -72,7 +96,13 @@ where
 -- по дате ищем через >= и через <
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -85,7 +115,13 @@ where
 -- или по дате ищем через between
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -95,7 +131,13 @@ where
 -- по названию ищем, приводя всё к нижнему регистру через lower
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -105,7 +147,13 @@ where
 -- по городу ищем, приводя всё к нижнему регистру через lower
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -115,7 +163,13 @@ where
 -- по дате и названию
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -126,7 +180,13 @@ where
 -- по дате и городу
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -137,7 +197,13 @@ where
 -- по названию и городу
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -148,7 +214,13 @@ where
 -- по дате, по названию и по городу
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -166,7 +238,13 @@ where
 -- по дате ищем через >= и через <
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -177,7 +255,13 @@ where
 -- или по дате ищем через between
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -187,7 +271,13 @@ where
 -- по строке поиска
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
@@ -200,7 +290,13 @@ where
 -- по дате и строке поиска
 
 select
-    *
+    id,
+    is_active,
+    race_date,
+    race_name,
+    race_city,
+    race_address,
+    description
 from
     race
 where
